@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var drawView: DrawView!
+    @IBOutlet weak var drawView: SketchView!
     @IBOutlet weak var undoButton: UIButton!
     
     var red: CGFloat = 0.0
@@ -18,6 +18,8 @@ class ViewController: UIViewController {
     
     var brushSize: CGFloat = 5.0
     var opacityValue: CGFloat = 1.0
+    
+    var fillIsSelected = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,71 +63,64 @@ class ViewController: UIViewController {
         }
         setStyle()
     }
+    
     @IBAction func switchPressed(_ sender: Any) {
-        if drawView.fillIsSelected {
-            drawView.fillIsSelected = false
+        if fillIsSelected {
+            fillIsSelected = false
         } else {
-            drawView.fillIsSelected = true
+            fillIsSelected = true
         }
     }
     
     @IBAction func circleButtonPressed(_ sender: Any) {
-        if drawView.circleIsSelected {
-            drawView.circleIsSelected = false
+        if fillIsSelected {
+            drawView.drawTool = .ellipseFill
         } else {
-            drawView.circleIsSelected = true
-            setStyle()
+            drawView.drawTool = .ellipseStroke
         }
+        setStyle()
     }
     
     @IBAction func lineButtonPressed(_ sender: Any) {
-        if drawView.lineIsSelected {
-            drawView.lineIsSelected = false
-        } else {
-            drawView.lineIsSelected = true
-            setStyle()
-        }
+        drawView.drawTool = .line
+        setStyle()
     }
     
     @IBAction func rectangleButtonPressed(_ sender: Any) {
-        if drawView.rectIsSelected {
-            drawView.rectIsSelected = false
+        if fillIsSelected {
+            drawView.drawTool = .rectangleFill
         } else {
-            drawView.rectIsSelected = true
-            setStyle()
+            drawView.drawTool = .rectangleStroke
         }
+        setStyle()
     }
     
     @IBAction func triangleButtonPressed(_ sender: Any) {
-        if drawView.triangleIsSelected {
-            drawView.triangleIsSelected = false
+        if fillIsSelected {
+            drawView.drawTool = .triangleFill
         } else {
-            drawView.triangleIsSelected = true
-            setStyle()
+            drawView.drawTool = .triangleStroke
         }
+        setStyle()
     }
     
     @IBAction func penButtonPressed(_ sender: Any) {
-        if drawView.penIsSelected {
-            drawView.penIsSelected = false
-        } else {
-            drawView.penIsSelected = true
-            setStyle()
-        }
+        drawView.drawTool = .pen
+        setStyle()
     }
     
     func setStyle() {
-        drawView.setStrokeColor(UIColor(red: red, green: green, blue: blue, alpha: opacityValue))
-        drawView.setStrokeWidth(brushSize)
+        drawView.lineColor = UIColor(red: red, green: green, blue: blue, alpha: opacityValue)
+        drawView.lineWidth = brushSize
     }
     
     @objc func tap() {
-        drawView.undoAction()
+        drawView.undo()
         print("Tap happend")
     }
 
     @objc func long() {
-        drawView.clearAction()
+        drawView.clear()
         print("Long press")
     }
     
@@ -142,7 +137,6 @@ extension ViewController: SettingsDelegate {
         self.blue = settingsVC.blue
         self.brushSize = settingsVC.brushSize
         self.opacityValue = settingsVC.opacityValue
-        drawView.setStrokeColor(UIColor(red: red, green: green, blue: blue, alpha: opacityValue))
-        drawView.setStrokeWidth(brushSize)
+        setStyle()
     }
 }
