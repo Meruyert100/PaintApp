@@ -197,19 +197,19 @@ class TriangleTool: SketchTool {
         context.lineWidth = lineWidth
 
         if self.isFill {
-            context.move(to: CGPoint(x: 0, y: lastPoint.y - firstPoint.y))
-            context.addLine(to: CGPoint(x: lastPoint.x - self.firstPoint.x, y: lastPoint.y - firstPoint.y))
-            context.addLine(to: CGPoint(x: (lastPoint.x - self.firstPoint.x) / 2, y: 0))
-            context.addLine(to: CGPoint(x: 0, y: lastPoint.y - firstPoint.y))
+            context.move(to: CGPoint(x: firstPoint.x, y: firstPoint.y))
+            context.addLine(to: CGPoint(x: lastPoint.x, y: lastPoint.y))
+            context.addLine(to: CGPoint(x: (lastPoint.x + firstPoint.x)/2, y: (lastPoint.y - firstPoint.y)/2))
+            context.addLine(to: CGPoint(x: firstPoint.x, y: firstPoint.y))
             context.close()
 
             lineColor.setFill()
             context.fill()
         } else {
-            context.move(to: CGPoint(x: 0, y: lastPoint.y - firstPoint.y))
-            context.addLine(to: CGPoint(x: lastPoint.x - self.firstPoint.x, y: lastPoint.y - firstPoint.y))
-            context.addLine(to: CGPoint(x: (lastPoint.x - self.firstPoint.x) / 2, y: 0))
-            context.addLine(to: CGPoint(x: 0, y: lastPoint.y - firstPoint.y))
+            context.move(to: CGPoint(x: firstPoint.x, y: firstPoint.y))
+            context.addLine(to: CGPoint(x: lastPoint.x, y: lastPoint.y))
+            context.addLine(to: CGPoint(x: (lastPoint.x + firstPoint.x)/2, y: (lastPoint.y - firstPoint.y)/2))
+            context.addLine(to: CGPoint(x: firstPoint.x, y: firstPoint.y))
             context.close()
              
             lineColor.setStroke()
