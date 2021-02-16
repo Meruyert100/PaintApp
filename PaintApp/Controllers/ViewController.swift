@@ -114,6 +114,10 @@ class ViewController: UIViewController {
         drawView.lineWidth = brushSize
     }
     
+    @IBAction func redoButtonPressed(_ sender: Any) {
+        drawView.redo()
+    }
+    
     @objc func tap() {
         drawView.undo()
         print("Tap happend")
@@ -122,10 +126,6 @@ class ViewController: UIViewController {
     @objc func long() {
         drawView.clear()
         print("Long press")
-    }
-    
-    
-    @IBAction func saveButtonPressed(_ sender: Any) {
     }
     
 }

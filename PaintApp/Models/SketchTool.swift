@@ -154,6 +154,7 @@ class RectTool: SketchTool {
         let rectToFill = CGRect(x: firstPoint.x, y: firstPoint.y, width: lastPoint.x - self.firstPoint.x, height: lastPoint.y - firstPoint.y)
         
         context.setAlpha(lineAlpha)
+        
         if self.isFill {
             context.setFillColor(lineColor.cgColor)
             UIGraphicsGetCurrentContext()!.fill(rectToFill)
@@ -172,7 +173,7 @@ class TriangleTool: SketchTool {
     var firstPoint: CGPoint
     var lastPoint: CGPoint
     var isFill: Bool
-    
+
     init() {
         lineWidth = 1.0
         lineAlpha = 1.0
@@ -181,33 +182,38 @@ class TriangleTool: SketchTool {
         lastPoint = CGPoint(x: 0, y: 0)
         isFill = false
     }
-    
+
     internal func setInitialPoint(_ firstPoint: CGPoint) {
         self.firstPoint = firstPoint
     }
-    
+
     internal func moveFromPoint(_ startPoint: CGPoint, toPoint endPoint: CGPoint) {
         self.lastPoint = endPoint
     }
-    
+
     internal func draw() {
-        let context: CGContext = UIGraphicsGetCurrentContext()!
-        let triangleToFill = CGRect(x: firstPoint.x, y: firstPoint.y, width: lastPoint.x - self.firstPoint.x, height: lastPoint.y - firstPoint.y)
-        
-        context.setAlpha(lineAlpha)
+        let context = UIBezierPath()
+
+        context.lineWidth = lineWidth
+
         if self.isFill {
-            context.setFillColor(lineColor.cgColor)
-            context.move(to: CGPoint(x: firstPoint.x, y: firstPoint.y - firstPoint.x*2))
-            context.addLine(to: CGPoint(x: (firstPoint.x + (lastPoint.x - self.firstPoint.x))/2, y:firstPoint.y + (lastPoint.y - firstPoint.y)))
-            context.addLine(to: CGPoint(x: (lastPoint.x - (lastPoint.x - self.firstPoint.x))/2, y:lastPoint.y + (lastPoint.y - firstPoint.y)))
-            context.strokePath()
+            context.move(to: CGPoint(x: 0, y: lastPoint.y - firstPoint.y))
+            context.addLine(to: CGPoint(x: lastPoint.x - self.firstPoint.x, y: lastPoint.y - firstPoint.y))
+            context.addLine(to: CGPoint(x: (lastPoint.x - self.firstPoint.x) / 2, y: 0))
+            context.addLine(to: CGPoint(x: 0, y: lastPoint.y - firstPoint.y))
+            context.close()
+
+            lineColor.setFill()
+            context.fill()
         } else {
-            context.setStrokeColor(lineColor.cgColor)
-            context.setLineWidth(lineWidth)
-            context.move(to: CGPoint(x: firstPoint.x, y: firstPoint.y - firstPoint.x*2))
-            context.addLine(to: CGPoint(x: (firstPoint.x + (lastPoint.x - self.firstPoint.x))/2, y:firstPoint.y + (lastPoint.y - firstPoint.y)))
-            context.addLine(to: CGPoint(x: (lastPoint.x - (lastPoint.x - self.firstPoint.x))/2, y:lastPoint.y + (lastPoint.y - firstPoint.y)))
-            context.strokePath()
+            context.move(to: CGPoint(x: 0, y: lastPoint.y - firstPoint.y))
+            context.addLine(to: CGPoint(x: lastPoint.x - self.firstPoint.x, y: lastPoint.y - firstPoint.y))
+            context.addLine(to: CGPoint(x: (lastPoint.x - self.firstPoint.x) / 2, y: 0))
+            context.addLine(to: CGPoint(x: 0, y: lastPoint.y - firstPoint.y))
+            context.close()
+             
+            lineColor.setStroke()
+            context.stroke()
         }
     }
 }
@@ -243,7 +249,9 @@ class EllipseTool: SketchTool {
         let context: CGContext = UIGraphicsGetCurrentContext()!
         context.setAlpha(lineAlpha)
         context.setLineWidth(lineWidth)
+        
         let rectToFill = CGRect(x: firstPoint.x, y: firstPoint.y, width: lastPoint.x - self.firstPoint.x, height: lastPoint.y - firstPoint.y)
+        
         if self.isFill {
             context.setFillColor(lineColor.cgColor)
             UIGraphicsGetCurrentContext()!.fillEllipse(in: rectToFill)

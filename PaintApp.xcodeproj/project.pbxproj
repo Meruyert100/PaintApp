@@ -85,7 +85,6 @@
 			isa = PBXGroup;
 			children = (
 				138AFD5225D9312600C83073 /* SketchView.swift */,
-				138AFD7A25D99DB100C83073 /* SketchTool.swift */,
 				138AFD4325D9269600C83073 /* Main.storyboard */,
 				138AFD4825D9269900C83073 /* LaunchScreen.storyboard */,
 			);
@@ -95,6 +94,7 @@
 		138AFD5D25D93AB900C83073 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				138AFD7A25D99DB100C83073 /* SketchTool.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";

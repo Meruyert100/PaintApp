@@ -186,17 +186,17 @@ public class SketchView: UIView {
         }
     }
     
-//    public func redo() {
-//        if canRedo() {
-//            guard let tool = bufferArray.lastObject as? SketchTool else { return }
-//            resetTool()
-//            pathArray.add(tool)
-//            bufferArray.removeLastObject()
-//            updateCacheImage(true)
-//
-//            setNeedsDisplay()
-//        }
-//    }
+    public func redo() {
+        if canRedo() {
+            guard let tool = bufferArray.lastObject as? SketchTool else { return }
+            resetTool()
+            pathArray.add(tool)
+            bufferArray.removeLastObject()
+            updateCacheImage(true)
+
+            setNeedsDisplay()
+        }
+    }
     
     func canUndo() -> Bool {
         return pathArray.count > 0
