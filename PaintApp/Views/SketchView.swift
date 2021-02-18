@@ -18,23 +18,22 @@ public enum SketchToolType {
     case triangleFill
 }
 
-@objc public protocol SketchViewDelegate: NSObjectProtocol  {
-    @objc optional func drawView(_ view: SketchView, willBeginDrawUsingTool tool: AnyObject)
-    @objc optional func drawView(_ view: SketchView, didEndDrawUsingTool tool: AnyObject)
-}
-
 public class SketchView: UIView {
     public var lineColor = UIColor.clear
     public var lineWidth = CGFloat(10)
     public var lineAlpha = CGFloat(1)
+    
     public var drawTool: SketchToolType = .pen
-    public var sketchViewDelegate: SketchViewDelegate?
+
     private var currentTool: SketchTool?
+    
     private let pathArray: NSMutableArray = NSMutableArray()
     private let bufferArray: NSMutableArray = NSMutableArray()
+    
     private var currentPoint: CGPoint?
     private var previousPoint1: CGPoint?
     private var previousPoint2: CGPoint?
+    
     private var image: UIImage?
     private var backgroundImage: UIImage?
     
@@ -122,6 +121,7 @@ public class SketchView: UIView {
         
         previousPoint1 = touch.previousLocation(in: self)
         currentPoint = touch.location(in: self)
+        
         currentTool = toolWithCurrentSettings()
         currentTool?.lineWidth = lineWidth
         currentTool?.lineColor = lineColor
@@ -140,11 +140,10 @@ public class SketchView: UIView {
         currentPoint = touch.location(in: self)
         
         if let penTool = currentTool as? PenTool {
-            let renderingBox = penTool.createBezierRenderingBox(previousPoint2!, widhPreviousPoint: previousPoint1!, withCurrentPoint: currentPoint!)
-            
+            let renderingBox = penTool.createBezierRenderingBox(previousPoint2: previousPoint2!, previousPoint1: previousPoint1!, withCurrentPoint: currentPoint!)
             setNeedsDisplay(renderingBox)
         } else {
-            currentTool?.moveFromPoint(previousPoint1!, toPoint: currentPoint!)
+            currentTool?.moveFromPoint(previousPoint1!, endPoint: currentPoint!)
             setNeedsDisplay()
         }
     }
@@ -154,10 +153,10 @@ public class SketchView: UIView {
         finishDrawing()
     }
     
-    fileprivate func finishDrawing() {
+    func finishDrawing() {
         updateCacheImage(false)
         bufferArray.removeAllObjects()
-        sketchViewDelegate?.drawView?(self, didEndDrawUsingTool: currentTool! as AnyObject)
+
         currentTool = nil
     }
     

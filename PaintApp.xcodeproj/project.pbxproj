@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13339B5825DE4C3C00678931 /* PenTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13339B5725DE4C3C00678931 /* PenTool.swift */; };
+		13339B5B25DE4CA500678931 /* LineTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13339B5A25DE4CA500678931 /* LineTool.swift */; };
+		13339B5E25DE4CC900678931 /* RectTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13339B5D25DE4CC900678931 /* RectTool.swift */; };
+		13339B6125DE4CEE00678931 /* TriangleTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13339B6025DE4CEE00678931 /* TriangleTool.swift */; };
+		13339B6425DE4D0B00678931 /* EllipseTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13339B6325DE4D0B00678931 /* EllipseTool.swift */; };
 		138AFD3E25D9269600C83073 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138AFD3D25D9269600C83073 /* AppDelegate.swift */; };
 		138AFD4025D9269600C83073 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138AFD3F25D9269600C83073 /* SceneDelegate.swift */; };
 		138AFD4225D9269600C83073 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138AFD4125D9269600C83073 /* ViewController.swift */; };
@@ -19,6 +24,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		13339B5725DE4C3C00678931 /* PenTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenTool.swift; sourceTree = "<group>"; };
+		13339B5A25DE4CA500678931 /* LineTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineTool.swift; sourceTree = "<group>"; };
+		13339B5D25DE4CC900678931 /* RectTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectTool.swift; sourceTree = "<group>"; };
+		13339B6025DE4CEE00678931 /* TriangleTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriangleTool.swift; sourceTree = "<group>"; };
+		13339B6325DE4D0B00678931 /* EllipseTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EllipseTool.swift; sourceTree = "<group>"; };
 		138AFD3A25D9269600C83073 /* PaintApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaintApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		138AFD3D25D9269600C83073 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		138AFD3F25D9269600C83073 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +105,11 @@
 			isa = PBXGroup;
 			children = (
 				138AFD7A25D99DB100C83073 /* SketchTool.swift */,
+				13339B5725DE4C3C00678931 /* PenTool.swift */,
+				13339B5A25DE4CA500678931 /* LineTool.swift */,
+				13339B5D25DE4CC900678931 /* RectTool.swift */,
+				13339B6025DE4CEE00678931 /* TriangleTool.swift */,
+				13339B6325DE4D0B00678931 /* EllipseTool.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -188,10 +203,15 @@
 			files = (
 				138AFD4225D9269600C83073 /* ViewController.swift in Sources */,
 				138AFD7B25D99DB100C83073 /* SketchTool.swift in Sources */,
+				13339B5825DE4C3C00678931 /* PenTool.swift in Sources */,
+				13339B6425DE4D0B00678931 /* EllipseTool.swift in Sources */,
+				13339B6125DE4CEE00678931 /* TriangleTool.swift in Sources */,
 				138AFD3E25D9269600C83073 /* AppDelegate.swift in Sources */,
 				138AFD5325D9312600C83073 /* SketchView.swift in Sources */,
 				138AFD4025D9269600C83073 /* SceneDelegate.swift in Sources */,
+				13339B5E25DE4CC900678931 /* RectTool.swift in Sources */,
 				138AFD5925D9340F00C83073 /* SettingsViewController.swift in Sources */,
+				13339B5B25DE4CA500678931 /* LineTool.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
